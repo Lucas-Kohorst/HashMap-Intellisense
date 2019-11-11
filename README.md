@@ -3,6 +3,9 @@ Computational Problem Solving in the Information Domain III, Homework create a w
 
 User inputs a letter and the program displays the next possible letters
 
+## Structure of the HashMap Dictionary
+![Structure](./resources/structure.png)
+
 ## Run 
 Navigate to the code/ folder
 
