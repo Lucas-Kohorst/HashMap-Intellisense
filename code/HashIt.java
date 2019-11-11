@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 /**
- * Loads in a txt files of words
- * and returns the hashmap of the letters
+ * Loads in a txt files of words and returns the hashmap of the letters
+ * 
  * @author Lucas Kohorst
  */
 public class HashIt {
@@ -64,7 +64,6 @@ public class HashIt {
 
    /**
     * Generate a nested HashMap of the letters in a word
-    * 
     * @param word, the word to add to the HashMap
     * @return the generated HashMap
     */
@@ -96,4 +95,40 @@ public class HashIt {
       }
    } // end of stackMap
 
-}
+   /**
+    * Searches the map with the given input 
+    * to return the next possible letters
+    * @param map, hashmap to search
+    * @param words, letters to search by
+    * @return next possible letters
+    */
+   public ArrayList<String> searchMap(HashMap<String, HashMap> map, ArrayList<String> words) {
+      ArrayList<String> possibleWords = new ArrayList<String>();
+      try {
+         HashMap<String, HashMap> baseMap = getNestedMap(map, words);
+         Set<String> keySet = baseMap.keySet();
+         for (String key : keySet) {
+            possibleWords.add(key);
+         }
+      } catch (Exception e) { }
+      return possibleWords;
+   } // end of searchMap
+
+   /**
+    * Helper function for searchMap
+    * gets the hashmap that is on level
+    * with the input
+    * @param map, the map to get next map of
+    * @param words, the letters to get map by
+    * @return, a map level with the inputted letters
+    */
+   public HashMap<String, HashMap> getNestedMap(HashMap<String, HashMap> map, ArrayList<String> words) {
+      if (words.size() == 0) {
+         return map;
+      }
+      HashMap<String, HashMap> nestedMap = map.get(words.get(0).toLowerCase());
+      words.remove(0);
+      return getNestedMap(nestedMap, words);
+   } // end of getNestedMap
+
+} // end of HashIt
